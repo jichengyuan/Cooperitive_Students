@@ -1,0 +1,56 @@
+_BASE_: "./Base-RCNN-C4.yaml"
+MODEL:
+  META_ARCHITECTURE: "DAobjTwoStagePseudoLabGeneralizedRCNN"
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: False
+  STUDENT_DUAL_DA: True
+  RESNETS:
+    DEPTH: 50
+    OUT_FEATURES: [ "res5" ]
+    RES5_DILATION: 2
+  PROPOSAL_GENERATOR:
+    NAME: "PseudoLabRPN"
+  RPN:
+    IN_FEATURES: [ "res5" ]
+  #   POSITIVE_FRACTION: 0.25
+  ROI_HEADS:
+    NAME: "StandardROIHeadsPseudoLab"
+    IN_FEATURES: [ "res5" ]
+    LOSS: "CrossEntropy" # variant: "CrossEntropy"
+    NUM_CLASSES: 6
+  ROI_BOX_HEAD:
+    NAME: "FastRCNNConvFCHead"
+    NUM_FC: 2
+    POOLER_RESOLUTION: 7
+SOLVER:
+  LR_SCHEDULER_NAME: "WarmupTwoStageMultiStepLR"
+  STEPS: (50000, 60000, 70000)
+  FACTOR_LIST: (1, 1, 1, 1)
+  MAX_ITER: 80000
+  IMG_PER_BATCH_LABEL: 9
+  IMG_PER_BATCH_UNLABEL: 9
+  BASE_LR: 0.04
+  CHECKPOINT_PERIOD: 100000
+DATALOADER:
+  SUP_PERCENT: 100.0
+DATASETS:
+  CROSS_DATASET: True
+  TRAIN_LABEL: ("shift_day_train",)
+  TRAIN_UNLABEL: ("shift_night_train",)
+  TEST: ("shift_night_val",)
+SEMISUPNET:
+  Trainer: "studentteacher"
+  BBOX_THRESHOLD: 0.8
+  IOU_THRESHOLD: 0.8
+  TEACHER_UPDATE_ITER: 1
+  BURN_UP_STEP: 40000
+  EMA_KEEP_RATE: 0.9996
+  UNSUP_LOSS_WEIGHT: 0.3
+  SUP_LOSS_WEIGHT: 1.0
+  PROXY_STEP: 56000
+  PROXY_EMA_KEEP_RATE: 0.9995
+  THR_ITER: 64000
+  THR_UPDATE_ITER: 2000
+  THR_UPDATE_GAMMA: 0.05
+TEST:
+  EVAL_PERIOD: 20000
