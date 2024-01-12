@@ -1,0 +1,37 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="Eslint" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="23">
+            <item index="0" class="java.lang.String" itemvalue="onnxruntime" />
+            <item index="1" class="java.lang.String" itemvalue="panopticapi" />
+            <item index="2" class="java.lang.String" itemvalue="pycocotools" />
+            <item index="3" class="java.lang.String" itemvalue="onnx" />
+            <item index="4" class="java.lang.String" itemvalue="submitit" />
+            <item index="5" class="java.lang.String" itemvalue="argcomplete" />
+            <item index="6" class="java.lang.String" itemvalue="PyYAML" />
+            <item index="7" class="java.lang.String" itemvalue="aiofiles" />
+            <item index="8" class="java.lang.String" itemvalue="packaging" />
+            <item index="9" class="java.lang.String" itemvalue="plotly" />
+            <item index="10" class="java.lang.String" itemvalue="Jinja2" />
+            <item index="11" class="java.lang.String" itemvalue="ftfy" />
+            <item index="12" class="java.lang.String" itemvalue="boto3" />
+            <item index="13" class="java.lang.String" itemvalue="mongoengine" />
+            <item index="14" class="java.lang.String" itemvalue="regex" />
+            <item index="15" class="java.lang.String" itemvalue="strawberry-graphql" />
+            <item index="16" class="java.lang.String" itemvalue="Deprecated" />
+            <item index="17" class="java.lang.String" itemvalue="starlette" />
+            <item index="18" class="java.lang.String" itemvalue="hypercorn" />
+            <item index="19" class="java.lang.String" itemvalue="matplotlib" />
+            <item index="20" class="java.lang.String" itemvalue="cachetools" />
+            <item index="21" class="java.lang.String" itemvalue="xmltodict" />
+            <item index="22" class="java.lang.String" itemvalue="pytz" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
