@@ -50,7 +50,7 @@ class BaselineTrainer(DefaultTrainer):
 
         if comm.get_world_size() > 1:
             model = DistributedDataParallel(
-                model, device_ids=[comm.get_local_rank()], broadcast_buffers=False
+                model, device_ids=[comm.get_local_rank()], broadcast_buffers=False, find_unused_parameters=True
             )
 
         TrainerBase.__init__(self)
@@ -295,7 +295,7 @@ class CoSTrainer(DefaultTrainer):
         # For training, wrap with DDP. But don't need this for inference.
         if comm.get_world_size() > 1:
             model = DistributedDataParallel(
-                model, device_ids=[comm.get_local_rank()], broadcast_buffers=False
+                model, device_ids=[comm.get_local_rank()], broadcast_buffers=False, find_unused_parameters=True
             )
 
         TrainerBase.__init__(self)
