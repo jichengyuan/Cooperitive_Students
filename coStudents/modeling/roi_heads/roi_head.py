@@ -150,6 +150,8 @@ class StandardROIHeadsPseudoLab(StandardROIHeads):
         ) or compute_val_loss:  # apply if training loss or val loss
             if isinstance(self.box_head, nn.ModuleList):
                 losses = self.box_predictor[0].losses(predictions, proposals)
+                for p in self.parameters():
+                    losses['loss_cls'] += 0.0 * p.sum()
             else:
                 losses = self.box_predictor.losses(predictions, proposals)
 

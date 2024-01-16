@@ -682,14 +682,16 @@ class CoSTrainer(DefaultTrainer):
 
     @torch.no_grad()
     def _update_teacher_model(self, keep_rate=0.9996):
+
+        new_teacher_dict = OrderedDict()
+
         if comm.get_world_size() > 1:
             student_model_dict = {
                 key[7:]: value for key, value in self.model.state_dict().items()
+
             }
         else:
             student_model_dict = self.model.state_dict()
-
-        new_teacher_dict = OrderedDict()
         for key, value in self.model_teacher.state_dict().items():
             if key in student_model_dict.keys():
                 new_teacher_dict[key] = (
@@ -714,23 +716,25 @@ class CoSTrainer(DefaultTrainer):
             student_model_dict = {
                 key[7:]: value for key, value in self.model.state_dict().items()
             }
+            key_pre = 'module.'
         else:
             student_model_dict = self.model.state_dict()
-
+            key_pre=''
         new_student_dict = OrderedDict()
         for key in student_model_dict.keys():
+            key_repl = key_pre + key
             if 'box' in key:
                 flag = key.split('.')[2]
                 if flag == '1':
                     state_key = key.replace('.1.', '.0.')
-                    new_student_dict[key] = (
+                    new_student_dict[key_repl] = (
                             student_model_dict[state_key] *
                             (1 - keep_rate) + student_model_dict[key] * keep_rate
                     )
                 else:
-                    new_student_dict[key] = student_model_dict[key]
+                    new_student_dict[key_repl] = student_model_dict[key]
             else:
-                new_student_dict[key] = student_model_dict[key]
+                new_student_dict[key_repl] = student_model_dict[key]
         self.model.load_state_dict(new_student_dict)
 
     @torch.no_grad()
