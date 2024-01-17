@@ -542,10 +542,9 @@ class CoSTrainer(DefaultTrainer):
         # label_strong, label_weak, unlabed_strong, unlabled_weak
         label_data, unlabel_data = data
         data_time = time.perf_counter() - start
-        label_data.extend(
-            self.enhance_with_night_prior.aug([x.copy() for x in label_data]) + self.enhance_with_night_prior.aug(
-                [x.copy() for x in label_data],
-                contrastive_feature=True))
+        label_data.extend(self.enhance_with_night_prior.aug(
+            [x.copy() for x in label_data],
+            contrastive_feature=True))
         # burn-in stage (supervised training with labeled data)
         if self.iter < self.cfg.SEMISUPNET.BURN_UP_STEP:
             record_dict, _, _, _ = self.model(label_data, branch="supervised_stu")

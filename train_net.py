@@ -47,9 +47,7 @@ def evaluate_model(cfg, args, Trainer):
     Evaluates the model.
     """
     if cfg.SEMISUPNET.Trainer == "studentteacher":
-        cfg.MODEL.STUDENT_DUAL_DA = True
         model = Trainer.build_model(cfg)
-        cfg.MODEL.STUDENT_DUAL_DA = False
         model_teacher = Trainer.build_model(cfg)
         ensemble_model = EnsembleTSModel(model_teacher, model)
 

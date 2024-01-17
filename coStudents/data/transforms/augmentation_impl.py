@@ -106,11 +106,15 @@ class GLT:
                             y_new = y1 + np.random.randint(y2 - y1)
                             h_new = (y2 - y_new) // 2
                             for i in range(3):
+                                if h_new == 0:
+                                    break
                                 roi_mask[i, y_new:y_new + h_new, x1:x2] = random_beta * lowlight_param[i] * 0.5
                         else:
                             x_new = x1 + np.random.randint(x2 - x1)
                             w_new = (x2 - x_new) // 2
                             for i in range(3):
+                                if w_new == 0:
+                                    break
                                 roi_mask[i, y1:y2, x_new:x_new + w_new] = random_beta * lowlight_param[i] * 0.5
 
                     lowlighted_roi = torch.pow(normalized_image, roi_mask)
