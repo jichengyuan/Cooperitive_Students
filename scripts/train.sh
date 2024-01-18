@@ -6,7 +6,7 @@ echo "num_gpus: $num_gpus, default_gpus number is 2, so the gpu_ratio: $gpu_rati
 config="configs/faster_rcnn_R50_BDD.yaml"
 OUTPUT_DIR="./output"
 
-CUDA_VISIBLE_DEVICES=0,1 python train_net.py \
+CUDA_VISIBLE_DEVICES=2,3 python train_net.py \
        --num-gpus ${num_gpus} \
        --config ${config} \
        OUTPUT_DIR ${OUTPUT_DIR}
