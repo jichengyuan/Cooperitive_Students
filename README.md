@@ -1,5 +1,6 @@
 # Cooperative-Students: Navigating Unsupervised Domain Adaptation in Nighttime Object Detection
 
+Official implementation of **Cooperative-Students: Navigating Unsupervised Domain Adaptation in Nighttime Object Detection**.
 <p align="center">
 <img src="model.png" width="85%">
 </p>
@@ -109,4 +110,16 @@ python train_net.py \
       --num-gpus 2 \
       --config configs/faster_rcnn_R50_BDD.yaml \
       MODEL.WEIGHTS <your weight>.pth
+```
+
+
+## Citation
+
+```
+@article{yuan2024cos,
+  title={Cooperative Students: Navigating Unsupervised Domain Adaptation in Nighttime Object Detection},
+  author={Jicheng, Yuan and Anh Le-Tuan and Manfred Hauswirth and Danh Le-Phuoc},
+  journal={2024 IEEE International Conference on Multimedia and Expo (ICME)},
+  year={2024}
+}
 ```
