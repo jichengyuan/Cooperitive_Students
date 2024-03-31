@@ -118,7 +118,7 @@ python train_net.py \
 ```
 @article{yuan2024cos,
   title={Cooperative Students: Navigating Unsupervised Domain Adaptation in Nighttime Object Detection},
-  author={Jicheng, Yuan and Anh Le-Tuan and Manfred Hauswirth and Danh Le-Phuoc},
+  author={Jicheng, Yuan and Anh, Le-Tuan and Manfred, Hauswirth and Danh, Le-Phuoc},
   journal={2024 IEEE International Conference on Multimedia and Expo (ICME)},
   year={2024}
 }
