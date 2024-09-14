@@ -116,10 +116,10 @@ python train_net.py \
 ## Citation
 
 ```
-@article{yuan2024cos,
+@article{yuan2024cooperative,
   title={Cooperative Students: Navigating Unsupervised Domain Adaptation in Nighttime Object Detection},
-  author={Jicheng, Yuan and Anh, Le-Tuan and Manfred, Hauswirth and Danh, Le-Phuoc},
-  journal={2024 IEEE International Conference on Multimedia and Expo (ICME)},
+  author={Yuan, Jicheng and Le-Tuan, Anh and Hauswirth, Manfred and Le-Phuoc, Danh},
+  journal={arXiv preprint arXiv:2404.01988},
   year={2024}
 }
 ```
